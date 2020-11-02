@@ -1,5 +1,7 @@
 server:
     port: 8090
+
+
 spring:
     application:
         name: admin-server
@@ -7,8 +9,12 @@ spring:
         nacos:
             discovery:
                 server-addr: 127.0.0.1:8848
-                namespace: f0de1462-c13c-4efb-87c7-f7ac6ff7abe1
+                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
             config:
                 server-addr: 127.0.0.1:8848
                 file-extension: yaml
-                namespace: f0de1462-c13c-4efb-87c7-f7ac6ff7abe1
+                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
+                group: DEV_GROUP
+
+common:
+    name: "123"
