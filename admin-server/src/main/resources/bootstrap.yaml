@@ -7,9 +7,8 @@ spring:
         nacos:
             discovery:
                 server-addr: 127.0.0.1:8848
-                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
+                namespace: f0de1462-c13c-4efb-87c7-f7ac6ff7abe1
             config:
                 server-addr: 127.0.0.1:8848
                 file-extension: yaml
-                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
-                grpup: DEV_GROUP
+                namespace: f0de1462-c13c-4efb-87c7-f7ac6ff7abe1
