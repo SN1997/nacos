@@ -2,6 +2,7 @@ package com.demo.nacos.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @Author ZXC
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
  * @description
  */
 @EnableAutoConfiguration
+@EnableDiscoveryClient
 public class WebServerApplication {
 
     public static void main(String[] args) {

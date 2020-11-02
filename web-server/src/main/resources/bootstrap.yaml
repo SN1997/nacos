@@ -1,5 +1,5 @@
 server:
-    port: 8080
+    port: 8082
 
 
 spring:
@@ -7,8 +7,9 @@ spring:
         name: web-server
     cloud:
         nacos:
+            discovery: 127.0.0.1:8848
+            server-addr: 127.0.0.1:8848
             config:
-                server-addr: 127.0.0.1:8848
                 file-extension: yaml
-                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
+                namespace: f0de1462-c13c-4efb-87c7-f7ac6ff7abe1
                 grpup: DEV_GROUP
