@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2020/10/31 16:12
  * @description
  */
-@RestController
 public class adminController {
 
 }
