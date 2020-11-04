@@ -15,6 +15,3 @@ spring:
                 file-extension: yaml
                 namespace: 15971bf0-a097-441d-b243-e2c90255d03e
                 group: DEFAULT_GROUP
-
-common:
-    name: "123"
