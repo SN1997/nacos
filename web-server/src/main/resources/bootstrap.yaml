@@ -6,12 +6,26 @@ spring:
         name: web-server
     cloud:
         nacos:
+            # 注册中心
             discovery:
                 server-addr: @nacos.config.host@
                 namespace: @nacos.config.namespace@
+            # 配置中心
             config:
+                # dataID ${prefix}
                 prefix: web
+                # dataID ${file-extension}
                 file-extension: yaml
-                server-addr: @nacos.config.host@
-                namespace: @nacos.config.namespace@
+                #配置对应的组,默认为DEFAULT_GROUP
                 group: DEFAULT_GROUP
+                # 启动监控的端口的ip地址和端口
+                server-addr: @nacos.config.host@
+                # 命名空间,用于不同配置的分区割离
+                namespace: @nacos.config.namespace@
+                # 客户端获取配置的超时时间 单位为 ms
+                timeout: 5000
+                # 配置内容的编码方式
+                encode: UTF-8
+                # 是否开启监听和自动刷新  （false 则不会刷新，已测试）
+                refresh:
+                     enabled: true
