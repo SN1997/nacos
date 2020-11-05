@@ -27,6 +27,7 @@ spring:
                 # 服务超时时，多少秒后删除
                 # ip-delete-timeout: 30
                 # 负载均衡权重，默认1,取值范围 1 到 100，数值越大，权重越大
+                # 已测试：Nacos权重配置对Spring Cloud Alibaba无效，Spring Cloud Alibaba通过整合Ribbon的方式，实现了负载均衡
                 # weight: 1
                 # 监视延迟，从nacos服务器拉取新服务的持续时间,单位ms
                 # watch-delay: 30000
