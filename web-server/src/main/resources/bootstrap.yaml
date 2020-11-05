@@ -1,6 +1,5 @@
 server:
-    port: 8082
-
+    port: 10000
 
 spring:
     application:
@@ -8,13 +7,11 @@ spring:
     cloud:
         nacos:
             discovery:
-                server-addr: 127.0.0.1:8848
-                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
+                server-addr: @nacos.config.host@
+                namespace: @nacos.config.namespace@
             config:
-                server-addr: 127.0.0.1:8848
+                prefix: web
                 file-extension: yaml
-                namespace: 15971bf0-a097-441d-b243-e2c90255d03e
+                server-addr: @nacos.config.host@
+                namespace: @nacos.config.namespace@
                 group: DEFAULT_GROUP
-
-common:
-    name: "123"
