@@ -37,4 +37,9 @@ public class WebController {
         return feignApiService.testFeign();
     }
 
+    @GetMapping("/ribbon")
+    public Map<String, Object> testRibbon() {
+        return feignApiService.testRibbon();
+    }
+
 }

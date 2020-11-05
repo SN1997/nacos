@@ -10,6 +10,7 @@
     <modules>
         <module>web-server</module>
         <module>feign-server</module>
+        <module>feign2-server</module>
         <module>feign-api</module>
     </modules>
     <packaging>pom</packaging>
