@@ -77,3 +77,19 @@ spring:
                 # 是否开启监听和自动刷新  （false 则不会刷新，已测试）
                 refresh:
                      enabled: true
+
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        #服务降级时间 单位：秒  默认1秒
+                        timeoutInMilliseconds: 2000
+            circuitBreaker:
+                #触发熔断错误比例阈值，默认50%
+                errorThresholdPercentage: 50
+                #熔断后休眠时长，默认5秒
+                sleepWindowInMilliseconds: 20000
+                #熔断触发最小请求次数，默认值是20
+                requestVolumeThreshold: 5

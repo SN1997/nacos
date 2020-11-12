@@ -18,4 +18,7 @@ public interface FeignApi {
 	@GetMapping("/ribbon")
 	Map<String, Object> testRibbon();
 
+	@GetMapping("/hystrix")
+	Map<String, Object> testHystrix();
+
 }

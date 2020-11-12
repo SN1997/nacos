@@ -35,4 +35,11 @@ public class FeignController implements FeignApi {
         return ribbonMap;
     }
 
+    @Override
+    public Map<String, Object> testHystrix() {
+        Map<String, Object> hystrixMap = new HashMap<>();
+        hystrixMap.put("testHystrix", "微服务调用成功，当前端口：" + port);
+        return hystrixMap;
+    }
+
 }

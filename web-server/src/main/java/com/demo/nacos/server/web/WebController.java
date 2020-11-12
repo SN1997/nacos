@@ -1,9 +1,11 @@
 package com.demo.nacos.server.web;
 
 import com.demo.nacos.feign.api.FeignApiService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -40,6 +42,27 @@ public class WebController {
     @GetMapping("/ribbon")
     public Map<String, Object> testRibbon() {
         return feignApiService.testRibbon();
+    }
+
+    @GetMapping("/hystrix")
+    @HystrixCommand(fallbackMethod = "hystrixFallback")
+    public Map<String, Object> testHystrix(@RequestParam(value = "id",defaultValue = "0") Integer id) throws Exception{
+        if(id == 1){
+            throw new Exception("熔断测试");
+        }
+        return feignApiService.testHystrix();
+    }
+
+    /**
+     * @Title : hystrixFallback
+     * @Description : 服务降级执行的方法：必须给一个和请求接口相同的参数以及相同的返回值
+     * @author : qt
+     * @date : 2020-11-12 17:24
+     */
+    private Map<String, Object> hystrixFallback(Integer id) {
+        Map<String, Object> hystrixMap = new HashMap<>();
+        hystrixMap.put("testHystrix", "网络拥堵，请稍后再试~");
+        return hystrixMap;
     }
 
 }
