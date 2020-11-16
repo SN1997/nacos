@@ -1,6 +1,7 @@
 package com.demo.nacos.server.web;
 
 import com.demo.nacos.feign.api.FeignApiService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -19,6 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RefreshScope
+@DefaultProperties(defaultFallback = "hystrixFallback")
 public class WebController {
 
     @Value("${common.name:null}")
@@ -45,8 +47,23 @@ public class WebController {
     }
 
     @GetMapping("/hystrix")
-    @HystrixCommand(fallbackMethod = "hystrixFallback")
+//    @HystrixCommand(fallbackMethod = "hystrixFallback",commandProperties = {
+//
+//    })
+    @HystrixCommand
     public Map<String, Object> testHystrix(@RequestParam(value = "id",defaultValue = "0") Integer id) throws Exception{
+        if(id == 1){
+            throw new Exception("熔断测试");
+        }
+        System.out.println("1");
+        Thread.sleep(5000);
+        System.out.println("2");
+        return feignApiService.testHystrix();
+    }
+
+    @GetMapping("/hystrix1")
+//    @HystrixCommand
+    public Map<String, Object> testHystrix1(@RequestParam(value = "id",defaultValue = "0") Integer id) throws Exception{
         if(id == 1){
             throw new Exception("熔断测试");
         }
@@ -59,7 +76,7 @@ public class WebController {
      * @author : qt
      * @date : 2020-11-12 17:24
      */
-    private Map<String, Object> hystrixFallback(Integer id) {
+    private Map<String, Object> hystrixFallback() {
         Map<String, Object> hystrixMap = new HashMap<>();
         hystrixMap.put("testHystrix", "网络拥堵，请稍后再试~");
         return hystrixMap;

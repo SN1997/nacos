@@ -78,7 +78,17 @@ spring:
                 refresh:
                      enabled: true
 
+#在feign接口段定义方法类,处理接口方法异常，降低代码偶额度
+feign:
+  hystrix:
+      enabled: true
+#
 hystrix:
+    threadpool:
+        service-provider:
+            coreSize: 200 #并发执行的最大线程数，默认10
+            maxQueueSize: 1000 #BlockingQueue的最大队列数，默认值-1
+            queueSizeRejectionThreshold: 800 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
     command:
         default:
             execution:
@@ -90,6 +100,6 @@ hystrix:
                 #触发熔断错误比例阈值，默认50%
                 errorThresholdPercentage: 50
                 #熔断后休眠时长，默认5秒
-                sleepWindowInMilliseconds: 20000
+                sleepWindowInMilliseconds: 10000
                 #熔断触发最小请求次数，默认值是20
                 requestVolumeThreshold: 5

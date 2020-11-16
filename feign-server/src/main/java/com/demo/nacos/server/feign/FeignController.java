@@ -37,8 +37,10 @@ public class FeignController implements FeignApi {
 
     @Override
     public Map<String, Object> testHystrix() {
+        int i=10/2;
         Map<String, Object> hystrixMap = new HashMap<>();
         hystrixMap.put("testHystrix", "微服务调用成功，当前端口：" + port);
+        hystrixMap.put("i", i);
         return hystrixMap;
     }
 
