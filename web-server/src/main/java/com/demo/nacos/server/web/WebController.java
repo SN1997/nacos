@@ -3,6 +3,10 @@ package com.demo.nacos.server.web;
 import com.demo.nacos.feign.api.FeignApiService;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +32,16 @@ public class WebController {
 
     @Resource
     private FeignApiService feignApiService;
+
+    @GetMapping("/swagger")
+    @ApiOperation("swagger接口")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true)
+    @ApiResponses({@ApiResponse(code = 200, message = "成功"), @ApiResponse(code = 500, message = "失败")})
+    public Map<String, Object> getSwagger(@RequestParam(value = "id") Integer id) {
+        Map<String, Object> map = new HashMap();
+        map.put("id", id);
+        return map;
+    }
 
     @GetMapping("/config")
     public Map<String, Object> getConfig() {

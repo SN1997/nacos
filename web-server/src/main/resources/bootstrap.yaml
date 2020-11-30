@@ -103,3 +103,15 @@ hystrix:
                 sleepWindowInMilliseconds: 10000
                 #熔断触发最小请求次数，默认值是20
                 requestVolumeThreshold: 5
+
+swagger:
+    base-package: com.demo.nacos.server.web
+    title: 测试springCloud整合swagger
+    description: 此处应该描述些什么
+    version: 1.0
+    terms-of-service-url: com.demo.nacos
+    contact:
+        name: 邱涛
+        email: 404219129@qq.com
+        url: com.demo.nacos
+    enabled: true
