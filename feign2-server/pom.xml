@@ -65,8 +65,8 @@
             </activation>
             <properties>
                 <project.packaging>jar</project.packaging>
-                <nacos.config.host>192.168.124.14:8848</nacos.config.host>
-                <nacos.config.namespace>15971bf0-a097-441d-b243-e2c90255d03e</nacos.config.namespace>
+                <nacos.config.host>101.37.146.171:8848</nacos.config.host>
+                <nacos.config.namespace>5dc846ac-96a3-4289-ad51-7b495e83a4df</nacos.config.namespace>
             </properties>
             <build>
                 <plugins>
