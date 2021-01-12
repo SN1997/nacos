@@ -1,6 +1,5 @@
 package com.demo.nacos.server;
 
-import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -20,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.demo.nacos.feign"})
 @EnableCircuitBreaker
-@EnableSwagger2Doc//http://localhost:8000/swagger-ui.html
 public class WebServerApplication {
 
     public static void main(String[] args) {
