@@ -27,7 +27,16 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
+        <!--sentinel-->
+        <!-- 后续做持久化用到 -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
         <!-- feign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -41,11 +50,35 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+
+
         <!-- hystrix -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
+
+        <!--log4j-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <!-- Lombok依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.aspose/aspose-words -->
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>14.7.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -71,7 +104,7 @@
             </activation>
             <properties>
                 <project.packaging>jar</project.packaging>
-                <nacos.config.host>192.168.124.14:8848</nacos.config.host>
+                <nacos.config.host>192.168.2.3:8848</nacos.config.host>
                 <nacos.config.namespace>15971bf0-a097-441d-b243-e2c90255d03e</nacos.config.namespace>
             </properties>
             <build>

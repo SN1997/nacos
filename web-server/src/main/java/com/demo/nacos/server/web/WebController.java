@@ -1,8 +1,12 @@
 package com.demo.nacos.server.web;
 
+import com.aspose.words.Document;
 import com.demo.nacos.feign.api.FeignApiService;
+import com.demo.nacos.util.WordToPdf;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +27,7 @@ import java.util.Map;
 @RefreshScope
 @DefaultProperties(defaultFallback = "hystrixFallback")
 public class WebController {
-
+    Logger log = LoggerFactory.getLogger(WebController.class);
     @Value("${common.name:null}")
     private String config;
 
@@ -30,12 +35,28 @@ public class WebController {
     private FeignApiService feignApiService;
 
     @GetMapping("/config")
-    public Map<String, Object> getConfig() {
-        Map<String, Object> map = new HashMap();
-        map.put("config", config);
-        return map;
+    public void getConfig() throws Exception {
+        Document document=new Document("C:\\Users\\Administrator\\Desktop\\jfyxxy.docx");
+        File file = new File("C:\\Users\\Administrator\\Desktop\\shengcheng.html");
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        fw = new FileWriter(file);
+        bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"UTF-8"));
+        String content = WordToPdf.parseWord2Html(document);
+        bw.write(content);
+        bw.flush();
+        fw.flush();
     }
 
+    @GetMapping("/configTest")
+    public Map<String, Object> configTest() {
+        Map<String, Object> map = new HashMap();
+        map.put("configTest", config);
+        return map;
+    }
     @GetMapping("/feign")
     public Map<String, Object> testFeign() {
         return feignApiService.testFeign();
